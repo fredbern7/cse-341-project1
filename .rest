@@ -8,7 +8,15 @@ GET http://localhost:3000/contacts
 Content-Type: application/json
 
 ###
+
+GET http://localhost:3000/contacts/666ec65e295402fd982b8ae9
+Content-Type: application/json
+
+###
 GET http://localhost:3000/users
 Content-Type: application/json
 
+###
 
+GET http://localhost:3000/users/666e823f295402fd982b8ae3
+Content-Type: application/json
