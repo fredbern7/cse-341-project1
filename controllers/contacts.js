@@ -54,16 +54,39 @@ const updateContact = async (req, res) => {
 
 };
 
+// const deleteContact = async (req, res) => {
+//     //#swagger-tags-['Contacts']
+//     const contactId = new ObjectId(req.params.id);
+//     const response = await mongodb.getDatabase().collection("contacts").deleteOne({ _id: contactId });
+//     if (response.deleteContact > 0) {
+//         res.status(204).send();
+//     } else {
+//         res.status(500).json(response.error || "Error occureds while deleting the contacts");
+//     }
+// }
 const deleteContact = async (req, res) => {
-    //#swagger-tags-['Contacts']
-    const contactId = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().collection("contacts").deleteOne({_id: contactId}, true);
-    if (response.deleteContact > 0) {
-        res.status(204).send();
-    } else {
-        res.status(500).json(response.error || "Error occureds while deleting the contacts");
+    // #swagger-tags-['Contacts']
+    try {
+        const contactId = new ObjectId(req.params.id);
+        console.log(`Attempting to delete contact with ID: ${contactId}`);
+
+        const response = await mongodb.getDatabase().collection("contacts").deleteOne({ _id: contactId });
+
+        console.log(`MongoDB delete response: ${JSON.stringify(response)}`);
+
+        if (response.deletedCount > 0) {
+            console.log('Contact successfully deleted.');
+            res.status(204).send(); // No Content
+        } else {
+            console.log('Contact not found.');
+            res.status(404).json({ message: "Contact not found" });
+        }
+    } catch (error) {
+        console.error('Error occurred while deleting the contact:', error);
+        res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
-}
+};
+
 
 module.exports = {
     getAll,
