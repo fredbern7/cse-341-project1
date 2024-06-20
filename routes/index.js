@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     res.send('Welcome to Project1..');
 });
 
-router.use('/users', require('./users'));
+router.use('/users', require('../OTHERS/unused-routes/users'));
 router.use('/contacts', require('./contacts'));
 
 module.exports = router;

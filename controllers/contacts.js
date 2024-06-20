@@ -54,16 +54,6 @@ const updateContact = async (req, res) => {
 
 };
 
-// const deleteContact = async (req, res) => {
-//     //#swagger-tags-['Contacts']
-//     const contactId = new ObjectId(req.params.id);
-//     const response = await mongodb.getDatabase().collection("contacts").deleteOne({ _id: contactId });
-//     if (response.deleteContact > 0) {
-//         res.status(204).send();
-//     } else {
-//         res.status(500).json(response.error || "Error occureds while deleting the contacts");
-//     }
-// }
 const deleteContact = async (req, res) => {
     // #swagger-tags-['Contacts']
     try {
